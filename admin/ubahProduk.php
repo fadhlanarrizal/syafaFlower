@@ -41,7 +41,7 @@ $product = $products->fetch_assoc();
         <label>Gambar</label>
         <input type="file" name="image" class="form-control" value="<?= $product['image'] ?>">
     </div>
-    <button name="ubah" class="btn next-btn">ubah</button>
+    <button name="ubah" class="btn next-btn" onclick="return confirm('Yakin Diubah?')">ubah</button>
 </form>
 
 <?php

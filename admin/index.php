@@ -62,7 +62,7 @@ require ('../koneksi.php');
                         <td><?=$product['quantity'];?></td>
                         <td>
                             <button><a href="hapusProduk.php?halaman=hapusid&id=<?=$product['id'];?>" class="next-btn" onclick="return confirm('Yakin Hapus?')">Hapus</a></button>
-                            <button><a href="ubahProduk.php?halaman=ubahproduk&id=<?=$product['id'];?>" class="next-btn" onclick="return confirm('Yakin Diubah?')>Ubah</a></button>
+                            <button><a href="ubahProduk.php?halaman=ubahproduk&id=<?=$product['id'];?>" class="next-btn">Ubah</a></button>
                         </td>
                     </tr>
 
