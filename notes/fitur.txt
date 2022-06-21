@@ -1,0 +1,9 @@
+1. Navbar 
+2. landing page (menampilkan slider dari produk)
+3. panel informasi
+4. servis [flexbox with hover]
+5. banner
+6. section pruduk [+toggle slider]
+7. section testimoni
+8. contact
+9. footer

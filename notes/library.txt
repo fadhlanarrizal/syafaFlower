@@ -1,0 +1,12 @@
+buat font :
+fonts.google.com
+
+buat clip path :
+bennettfeely.com/clippy
+
+buat icon :
+fontsawesome.com
+boxicons.com
+
+buat js :
+swipperjs.com
