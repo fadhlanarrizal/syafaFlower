@@ -22,7 +22,7 @@ require ('../koneksi.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/style.css">
-    <title>Hello Fadhlan</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -31,13 +31,14 @@ require ('../koneksi.php');
             <ul>
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="tambahProduk.php">Tambah Produk</a></li>
+                <li><a href="users.php">List Users</a></li>
                 <li><a href="../login/logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
     <section class="cart">
         <div class="container">
-            <h1>Keranjang Belanja</h1>
+            <h1>List Produk</h1>
             <hr>
             <table class="table">
                 <thead>

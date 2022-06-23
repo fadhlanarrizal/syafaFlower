@@ -40,3 +40,7 @@ var swiper = new Swiper(".mySwiperTesti", {
         delay: 3000
     }
 });
+
+$(document).ready(function() {
+	$('#nav a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active-menu');
+});
