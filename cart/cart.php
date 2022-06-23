@@ -90,8 +90,8 @@ if (empty($_SESSION['cart']) OR !isset($_SESSION['cart'])){
                 </tbody>
             </table>
             <div class="btn">
-                <a href="/plantShop/index.php" class="checkout-btn">Lanjutkan Belanja</a>
-                <a href="checkout.php" class="checkout-btn">Check Out</a>
+                <a href="../" class="checkout-btn">Lanjutkan Belanja</a>
+                <a href="checkout.php" class="checkout-btn">Order</a>
             </div>
         </div>
     </section>
