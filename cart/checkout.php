@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 session_start();
 require '../koneksi.php';
 
@@ -60,7 +61,7 @@ if (!isset($_SESSION["users"])){
                         $get = $con->query("SELECT * FROM products WHERE id = '$id_product'");
                         $product = $get->fetch_assoc();
                         $subtotal = $product["price"]*$quantity;
-                        $total += $subtotal;
+                        $total = $subtotal;
                         ?>
                     <tr>
                         <td><?= $no;?></td>
@@ -83,7 +84,7 @@ if (!isset($_SESSION["users"])){
                 </tfoot>
             </table>
             <form method="post" class="form">
-                <input type="text" readonly value="Name : <?= $_SESSION['users']['full_name'];?>" class="form-user">
+                <input type="text" readonly value="username : <?= $_SESSION['users']['username'];?>" class="form-user">
 
                 <select class="form-user" name="id_ongkir">
                     <option value="">Pilih Ongkos Kirim</option>
@@ -91,21 +92,49 @@ if (!isset($_SESSION["users"])){
                     $ongkirs = $con->query("SELECT * FROM shipping_cost");
                     foreach ($ongkirs as $ongkir) :
                     ?>
-                    <option value="<?= $ongkir['id_ongkir']?>">
+                    <option value="<?= $ongkir['id']?>">
                         <?=$ongkir['city']?> -
                         Rp.<?=number_format($ongkir['fare'], 0, ',', '.')?>
-                    </option>
                     <?php endforeach ?>
                 </select>
                     <button name="checkout" class="checkout-btn">Check Out</button>
             </form>
+                    </option>
+            <?php
+                if (isset($_POST["checkout"])){
+                    $id_user = $_SESSION['users']['id'];
+                    $id_ongkir = $_POST['id_ongkir'];
+                    print_r($id_ongkir);
+                    $date_of_order = date("Y-m-d");
+
+                    $get = $con->query("SELECT * FROM shipping_cost WHERE id='$id_ongkir'");
+                    // $array = mysqli_fetch($con, $get);
+                    $ongkirs = $get->fetch_assoc();
+                    echo $ongkirs;
+                    $tarif = $ongkir['fare'];
+                    $total_order = $total + $tarif;
+                    // menyimpan data ke tabel pembelian
+                    $con->query("INSERT INTO orders (id_user, id_ongkir, date_of_order, total)
+                    VALUES ('$id_user', '$id_ongkir', '$date_of_order', '$total_order')");
+
+                    // mendapat id pembelian barusan terjadi
+                    // $id_pembelian_baru = $con->insert_id;
+                    // foreach ($_SESSION['cart'] as $id_product => $quantity) {
+                    //     $con->query("INSERT INTO product_buying (id_buying, id_product, quantity) VALUES ('$id_pembelian_baru', '$id_product', '$quantity')");
+                    // }
+                    // unset($_SESSION['cart']);
+
+                    echo "<script>alert('Pembelian Sukses');</script>";
+                    echo "<script>location='nota.php?id=$id_pembelian_baru';</script>";
+                }
+            ?>
         </div>
     </section>
 
     <pre>
         <?php
-            print_r($_SESSION['cart']);
-            print_r($orders);
+            // print_r($_SESSION['cart']);
+            // print_r($ongkirs);
         ?>
     </pre>
 </body>
