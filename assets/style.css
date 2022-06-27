@@ -27,9 +27,38 @@
 .section-margin {
     margin-top: 250px;
 }
+.btn{
+    margin-top: 20px;
+    display: flex;
+}
+.btn-bayar{
+    margin-left: 120px;
+    /* margin-top: auto; */
+}
 
+.konten{
+    margin-top: 10px;
+    display: flex;
+}
+.bio{
+    margin-left: 10px;
+}
+.bio-margin{
+    /* margin-top: auto; */
+    margin-left: 100px;
+}
+.biodata{
+    margin-bottom: 5px;
+    color: black;
+}
+.name{
+    margin-bottom: 5px;
+}
 
 /* navbar start */
+.admin-menu{
+    margin: 20px;
+}
 .navbar {
     position: fixed;
     top: 0;
@@ -367,7 +396,7 @@ div .menuClose {
 
 .card-product .product-name {
     font-family: var(--heading-font);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     color: #ECE7B4;
 }
@@ -378,7 +407,8 @@ div .menuClose {
     color: var(--btn-color);
 }
 
-.card-product .stock {
+.card-product .stock{
+    font-size: 20px;
     font-weight: 600;
     color: #fff;
     margin-top: 5px;
@@ -387,7 +417,7 @@ div .menuClose {
 .card-product .price {
     font-family: var(--heading-font);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 24px;
     color: #ffffff;
     margin-top: 20px;
 }
@@ -556,7 +586,7 @@ div .menuClose {
 }
 
 .contact .btn-contact {
-    padding-top: 15px;
+    /* padding-top: 15px; */
     border: 1px solid #E6DD3B;
     border-radius: 10px;
     background-color: #E6DD3B;
@@ -566,6 +596,9 @@ div .menuClose {
 .contact .btn-contact p {
     font-size: 13px;
     color: var(--black-color);
+}
+.submit-contact{
+    padding: 15px;
 }
 .contact .btn-contact:hover{
     background-color: #fff;
@@ -636,7 +669,14 @@ footer{
     color: var(--heading-color);
     margin-bottom: 30px;
 }
-.footer .content-right li, p{
+.footer .content-right li{
+    font-family: var(--main-font);
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.footer .content-right p{
     font-family: var(--main-font);
     font-size: 20px;
     font-weight: 300;
@@ -719,10 +759,6 @@ footer{
     background-color: #f5fff9;
 }
 
-.btn{
-    margin-top: 20px;
-    display: flex;
-}
 .next-btn {
   background-color: initial;
   background-image: linear-gradient(-180deg, #00D775, #00BD68);
