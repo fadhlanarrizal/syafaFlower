@@ -1,6 +1,9 @@
 <?php
 session_start();
 require '../koneksi.php';
+// ini_set('display_errors', 1);
+include 'khususAdmin.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +17,12 @@ require '../koneksi.php';
 </head>
 <body>
 <header>
-        <nav>
+        <nav class="admin-menu">
             <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="index.php">List Product</a></li>
+                <li><a href="../index.php">Halaman Website</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="listProduk.php">List Product</a></li>
+                <li><a href="listOrder.php">List Order</a></li>
                 <li><a href="../login/logout.php">Logout</a></li>
             </ul>
         </nav>

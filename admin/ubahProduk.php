@@ -2,6 +2,7 @@
 
 <?php
 require ('../koneksi.php');
+include 'khususAdmin.php';
 
 $products = $con->query("SELECT * FROM products WHERE id='$_GET[id]'");
 // pecahannya
@@ -57,7 +58,7 @@ if (isset($_POST['ubah'])){
         $con->query("UPDATE products SET product_code='$_POST[product_code]', name='$_POST[name]', origin='$_POST[origin]', price='$_POST[price]', quantity='$_POST[quantity]' WHERE id='$_GET[id]'");
     }
     echo "<script>alert('data produk telah diubah');</script>";
-    echo "<script>location='index.php';</script>";
+    echo "<script>location='listProduk.php';</script>";
 }
 
 ?>

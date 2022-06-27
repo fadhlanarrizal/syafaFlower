@@ -1,5 +1,6 @@
 <?php
 require ('../koneksi.php');
+include 'khususAdmin.php';
 
 
 ?>
@@ -49,7 +50,7 @@ require ('../koneksi.php');
             move_uploaded_file($lokasi, "../assets/image".$foto);
             $con->query("INSERT INTO products (product_code, name, origin, price, quantity, image) VALUES ('$_POST[product_code]', '$_POST[name]', '$_POST[origin]', '$_POST[price]', '$_POST[quantity]', '$foto')");
             echo "data tersimpan";
-            echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=produk'>";
+            echo "<meta http-equiv='refresh' content='1;url=listProduk.php?halaman=produk'>";
         }
     ?>
     

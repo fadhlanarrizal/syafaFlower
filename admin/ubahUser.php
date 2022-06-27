@@ -6,6 +6,7 @@ require ('../koneksi.php');
 $users = $con->query("SELECT * FROM users WHERE id='$_GET[id]'");
 // pecahannya
 $user = $users->fetch_assoc();
+include 'khususAdmin.php';
 
 ?>
 <pre>
@@ -46,7 +47,7 @@ $user = $users->fetch_assoc();
 if (isset($_POST['ubah'])){
 
     $con->query("UPDATE users SET username='$_POST[username]', full_name='$_POST[full_name]', email='$_POST[email]', gender='$_POST[gender]', phone_number='$_POST[phone_number]', address_line='$_POST[address_line]' WHERE id='$_GET[id]'");
-
+    
     echo "<script>alert('data user telah diubah');</script>";
     echo "<script>location='users.php';</script>";
 }
