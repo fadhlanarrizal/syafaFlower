@@ -1,22 +1,13 @@
 <?php
+require '../koneksi.php';
 session_start();
-require ('../koneksi.php');
+include 'khususAdmin.php';
+// ini_set('display_errors', 1);
 
-
-// if (isset($_GET['halaman'])){
-//     if ($_GET['halaman'] == "hapusid"){
-//         include 'hapusProduk.php';
-//     }
-// } else {
-//     include 'index.php';
-// }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,13 +15,14 @@ require ('../koneksi.php');
     <link rel="stylesheet" href="../assets/style.css">
     <title>Home</title>
 </head>
-
 <body>
-    <header>
-        <nav>
+<header>
+        <nav class="admin-menu">
             <ul>
-                <li><a href="../index.php">Home</a></li>
+                <li><a href="../index.php">Halaman Website</a></li>
                 <li><a href="tambahProduk.php">Tambah Produk</a></li>
+                <li><a href="users.php">List Produk</a></li>
+                <li><a href="listOrder.php">List Order</a></li>
                 <li><a href="users.php">List Users</a></li>
                 <li><a href="../login/logout.php">Logout</a></li>
             </ul>
@@ -38,41 +30,49 @@ require ('../koneksi.php');
     </header>
     <section class="cart">
         <div class="container">
-            <h1>List Produk</h1>
+            <h1>Dashboard Home</h1>
             <hr>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Kode Produk</th>
-                        <th>Produk</th>
-                        <th>Harga Produk</th>
-                        <th>Jumlah</th>
-                        <th>Operasi</th>
+                        <th>Total Produk</th>
+                        <th>Omset</th>
+                        <th>Laba</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no=1;?>
                     <?php $products = $con->query("SELECT * FROM products");?>
                     <?php foreach ($products as $product) : ?>
-                    <tr>
-                        <td><?php echo $no;?></td>
-                        <td><?php echo $product['product_code'];?></td>
-                        <td><?=$product['name'];?></td>
-                        <td><?=$product['price'];?></td>
-                        <td><?=$product['quantity'];?></td>
-                        <td>
-                            <button><a href="hapusProduk.php?halaman=hapusid&id=<?=$product['id'];?>" class="next-btn" onclick="return confirm('Yakin Hapus?')">Hapus</a></button>
-                            <button><a href="ubahProduk.php?halaman=ubahproduk&id=<?=$product['id'];?>" class="next-btn">Ubah</a></button>
-                        </td>
+                        <?php $total_produk += $product['quantity'];?>
+                    <?php endforeach ?>
+                    <?php
+                        $orders = $con->query("SELECT * FROM orders");
+                        
+                        foreach ($orders as $order) {
+                            $omset += $order['total'];
+                        }
+
+                        $hitung_laba = $con->query("SELECT orders.id, orders.date_of_order, orders.total, order_items.id_product, order_items.id_order, order_items.order_quantity, products.id, products.price, products.ori_price FROM orders INNER JOIN order_items ON orders.id=order_items.id_order INNER JOIN products ON products.id=order_items.id_product");
+                        // $id_product = $con->query("SELECT * FROM products JOIN order_items  WHERE order_items.id_product=products.id AND ");
+                        foreach ($hitung_laba as $value) {
+                            // print_r($value);
+                            // foreach ($id_product as $produk) {
+                                $laba = ($value['price'] - $value['ori_price']) * $value['order_quantity'];
+                            // }
+                            // print_r($laba);
+                            $profit += $laba;
+                        }
+                        
+                    ?>
+                        <tr>
+                        <td><?php echo $total_produk;?></td>
+                        <td><?php echo $omset;?></td>
+                        <td><?=$profit;?></td>
                     </tr>
 
 
-                    <?php $no++ ?>
-                    <?php endforeach ?>
                 </tbody>
         </div>
     </section>
 </body>
-
 </html>
