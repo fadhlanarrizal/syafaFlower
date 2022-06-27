@@ -29,6 +29,9 @@ if (!isset($_SESSION["users"])){
         <div class="bungkus">
             <a href="logout.php" class="back">log Out</a>
         </div>
+        <div class="bungkus">
+            <a href="lengkapiDataUser.php" class="back">lengkapi Data Profile</a>
+        </div>
     </section>
     <div>
     <h1 class="greeting"><?php echo "Halo " . $_SESSION['users']['username'];?></h1>
