@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+// ini_set('display_errors', 1);
 session_start();
 require '../koneksi.php';
 
@@ -40,7 +40,6 @@ if (!isset($_SESSION["users"])){
     </nav>
     <section class="cart section-margin">
         <div class="container">
-
             <h1>Keranjang Belanja</h1>
             <hr>
             <table class="table">
@@ -61,7 +60,7 @@ if (!isset($_SESSION["users"])){
                         $get = $con->query("SELECT * FROM products WHERE id = '$id_product'");
                         $product = $get->fetch_assoc();
                         $subtotal = $product["price"]*$quantity;
-                        $total = $subtotal;
+                        $total += $subtotal;
                         ?>
                     <tr>
                         <td><?= $no;?></td>
@@ -104,28 +103,28 @@ if (!isset($_SESSION["users"])){
                 if (isset($_POST["checkout"])){
                     $id_user = $_SESSION['users']['id'];
                     $id_ongkir = $_POST['id_ongkir'];
-                    print_r($id_ongkir);
+                    // print_r($id_ongkir);
                     $date_of_order = date("Y-m-d");
 
                     $get = $con->query("SELECT * FROM shipping_cost WHERE id='$id_ongkir'");
                     // $array = mysqli_fetch($con, $get);
                     $ongkirs = $get->fetch_assoc();
-                    echo $ongkirs;
-                    $tarif = $ongkir['fare'];
+                    // echo $ongkirs;
+                    $tarif = $ongkirs['fare'];
                     $total_order = $total + $tarif;
                     // menyimpan data ke tabel pembelian
                     $con->query("INSERT INTO orders (id_user, id_ongkir, date_of_order, total)
                     VALUES ('$id_user', '$id_ongkir', '$date_of_order', '$total_order')");
 
                     // mendapat id pembelian barusan terjadi
-                    // $id_pembelian_baru = $con->insert_id;
-                    // foreach ($_SESSION['cart'] as $id_product => $quantity) {
-                    //     $con->query("INSERT INTO product_buying (id_buying, id_product, quantity) VALUES ('$id_pembelian_baru', '$id_product', '$quantity')");
-                    // }
-                    // unset($_SESSION['cart']);
+                    $id_order = $con->insert_id;
+                    foreach ($_SESSION['cart'] as $id_product => $quantity) {
+                        $con->query("INSERT INTO order_items (id_order, id_product, order_quantity) VALUES ('$id_order', '$id_product', '$quantity')");
+                    }
+                    
+                    // echo "<script>alert('Pembelian Sukses');</script>";
+                    echo "<script>location='shipment.php?id=$id_order';</script>";
 
-                    echo "<script>alert('Pembelian Sukses');</script>";
-                    echo "<script>location='nota.php?id=$id_pembelian_baru';</script>";
                 }
             ?>
         </div>
