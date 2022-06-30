@@ -36,7 +36,7 @@ if (empty($_SESSION['cart']) OR !isset($_SESSION['cart'])){
     <nav class="navbar navbar-cart">
         <div class="icons">
             <a href="../index.php">Home</a>
-            <a href="../login/profile.php">Profile</a>
+            <a href="../profile/profile.php">Profile</a>
             <!-- jika sudah login(ada sesion user) -->
             <?php if (isset($_SESSION['users'])) : ?>
                 <a href="../login/logout.php">Logout</a>                
