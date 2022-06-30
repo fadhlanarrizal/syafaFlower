@@ -1,0 +1,25 @@
+nav{
+    display: inline;
+}
+nav ul {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E7E6E1;
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+.tes{
+    display: flex;
+}
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 20px 15px;
+    margin: 0;
+    color: #314E52;
+    text-decoration: none;
+}
+

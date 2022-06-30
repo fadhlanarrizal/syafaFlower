@@ -40,9 +40,9 @@ if (!isset($_SESSION["users"])){
     </nav>
     <section class="cart section-margin">
         <div class="container">
-            <h1>Keranjang Belanja</h1>
+            <h1 class="title">Keranjang Belanja</h1>
             <hr>
-            <table class="table">
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -75,9 +75,7 @@ if (!isset($_SESSION["users"])){
                 <tfoot>
                     <tr>
                         <th>Total Belanja</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="3"></th>
                         <th>Rp. <?=number_format($total, 0, ',', '.') ;?></th>
                     </tr>
                 </tfoot>
@@ -96,11 +94,11 @@ if (!isset($_SESSION["users"])){
                         Rp.<?=number_format($ongkir['fare'], 0, ',', '.')?>
                     <?php endforeach ?>
                 </select>
-                    <button name="checkout" class="checkout-btn">Check Out</button>
+                    <button name="order" class="checkout-btn">Check Out</button>
             </form>
                     </option>
             <?php
-                if (isset($_POST["checkout"])){
+                if (isset($_POST["order"])){
                     $id_user = $_SESSION['users']['id'];
                     $id_ongkir = $_POST['id_ongkir'];
                     // print_r($id_ongkir);
@@ -121,20 +119,15 @@ if (!isset($_SESSION["users"])){
                     foreach ($_SESSION['cart'] as $id_product => $quantity) {
                         $con->query("INSERT INTO order_items (id_order, id_product, order_quantity) VALUES ('$id_order', '$id_product', '$quantity')");
                     }
-                    
                     // echo "<script>alert('Pembelian Sukses');</script>";
                     echo "<script>location='shipment.php?id=$id_order';</script>";
-
                 }
             ?>
         </div>
     </section>
 
     <pre>
-        <?php
-            // print_r($_SESSION['cart']);
-            // print_r($ongkirs);
-        ?>
+        <?php print_r($_SESSION);?>
     </pre>
 </body>
 

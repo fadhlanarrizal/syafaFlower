@@ -21,28 +21,20 @@ if (isset($_GET['id']) && isset($_GET['status'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <?php include '../assets/link.php'; ?>
+    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="../assets/style.css">
     <title>List Order</title>
 </head>
 
 <body>
     <header>
-        <nav class="admin-menu">
-            <ul>
-                <li><a href="../index.php">Halaman Website</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="users.php">List Users</a></li>
-                <li><a href="listProduk.php">List Produk</a></li>
-                <li><a href="../login/logout.php">Logout</a></li>
-            </ul>
-        </nav>
+        <?php include 'navbar.php'; ?>
     </header>
     <section class="cart">
         <div class="container">
-            <h1>List Order</h1>
-            <hr>
-            <table class="table">
+            <h1 class="title">List Order</h1>
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -57,7 +49,7 @@ if (isset($_GET['id']) && isset($_GET['status'])){
                 <tbody>
                     <?php $no=1;?>
                     <?php
-                    $get = $con->query("SELECT * FROM orders");
+                    $get = $con->query("SELECT * FROM orders WHERE MONTH(date_of_order)=MONTH(CURRENT_DATE())");
                     $get_order_status = $get->fetch_assoc();
                     $count_data = $get->num_rows;
                     if ($count_data > 0){
@@ -68,7 +60,7 @@ if (isset($_GET['id']) && isset($_GET['status'])){
                         <td><?php echo $order['id_user'];?></td>
                         <td><?=$order['id_ongkir'];?></td>
                         <td><?=$order['date_of_order'];?></td>
-                        <td><?=$order['total'];?></td>
+                        <td><?=number_format($order['total'], 0, ',', '.');?></td>
                         <td><?php
                             if ($order['status'] == 1){
                                 echo "Not paid yet";
@@ -81,7 +73,7 @@ if (isset($_GET['id']) && isset($_GET['status'])){
                             }
                         ?></td>
                         <td>
-                            <select onchange="status_update(this.options[this.selectedIndex].value,'<?=$order['id']?>')">
+                            <select class="select" onchange="status_update(this.options[this.selectedIndex].value,'<?=$order['id']?>')">
                                 <option value="">status</option>
                                 <option value="1">Not paid yet</option>
                                 <option value="2">Paid</option>

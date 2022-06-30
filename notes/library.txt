@@ -10,3 +10,8 @@ boxicons.com
 
 buat js :
 swipperjs.com
+
+date_format(date_of_order,'%M'),sum(total)
+                        from orders
+                        group by year(date_of_order),month(date_of_order)
+                        order by year(date_of_order),month(date_of_order);

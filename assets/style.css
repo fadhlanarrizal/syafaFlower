@@ -23,7 +23,6 @@
 .container {
     max-width: 1420px;
 }
-
 .section-margin {
     margin-top: 250px;
 }
@@ -39,13 +38,13 @@
 .konten{
     margin-top: 10px;
     display: flex;
+    justify-content: space-between;
+}
+.margin-lf{
+    margin: 0 100px;
 }
 .bio{
-    margin-left: 10px;
-}
-.bio-margin{
-    /* margin-top: auto; */
-    margin-left: 100px;
+    margin-left: 5px;
 }
 .biodata{
     margin-bottom: 5px;
@@ -587,9 +586,9 @@ div .menuClose {
 
 .contact .btn-contact {
     /* padding-top: 15px; */
-    border: 1px solid #E6DD3B;
+    border: 1px solid var(--primary-color);
     border-radius: 10px;
-    background-color: #E6DD3B;
+    background-color: #fff;
     text-align: center;
     cursor: pointer;
 }
@@ -601,8 +600,9 @@ div .menuClose {
     padding: 15px;
 }
 .contact .btn-contact:hover{
-    background-color: #fff;
-    border: 1px solid var(--primary-color);
+    background-color: #E6DD3B;
+    border: 1px solid #E6DD3B;
+
 }
 /* contact end */
 
@@ -711,8 +711,52 @@ footer{
 
 
 /* style for cart */
+
+/* tabel */
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tfoot tr{
+    text-align: center;
+}
+
+/* end tabel */
+
+select {
+    padding: 0.25rem;
+    border-radius:10px;
+    text-align: center;
+    background-color: white;
+}
 .navbar-cart, .navbar-checkout{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #111827;
 }
 .navbar-cart a, .navbar-checkout a{
     font-family: var(--heading-font);
@@ -731,33 +775,13 @@ footer{
 .cart .container{
     margin: 0 auto;
 }
-.table th, 
-.table td {
-    border-bottom: 1px solid #cccccc;
-    border-left: 1px solid #cccccc;
-    padding: 9px 21px;
+table {
+    width: 100%;
 }
-.table th, 
-.table td:last-child {
-    border-right: 1px solid #cccccc;
-}
-.table td:first-child {
-    border-top: 1px solid #cccccc;
+.title{
+    margin-top: 50px;
 }
 
-.table thead th{
-    background-color: #2ECD71;
-    color: #FFFFFF;
-}
-.table tbody td {
-    color: #353535;
-}
-.table tbody tr:nth-child(odd) td {
-    background-color: #f5fff9;
-}
-.table tfoot th  {
-    background-color: #f5fff9;
-}
 
 .next-btn {
   background-color: initial;
@@ -783,7 +807,9 @@ footer{
   z-index: 9;
   border: 0;
 }
-
+.padding-btn{
+    margin: 10px;
+}
 .next-btn:hover {
   background: #00bd68;
 }

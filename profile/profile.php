@@ -15,11 +15,11 @@ if (!isset($_SESSION["users"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <title>Profile</title>
 </head>
 
-<body>
 
 
     <section class="dataProfile">
@@ -27,10 +27,13 @@ if (!isset($_SESSION["users"])){
             <a href="../index.php" class="back">back to shop</a>
         </div>
         <div class="bungkus">
-            <a href="logout.php" class="back">log Out</a>
+            <a href="../login/logout.php" class="back">log Out</a>
         </div>
         <div class="bungkus">
             <a href="lengkapiDataUser.php" class="back">lengkapi Data Profile</a>
+        </div>
+        <div class="bungkus">
+            <a href="../cart/historyOrder.php" class="back">Riwayat Pembelian</a>
         </div>
     </section>
     <div>

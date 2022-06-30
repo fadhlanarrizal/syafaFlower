@@ -1,7 +1,7 @@
 <?php
 require ('../koneksi.php');
 include 'khususAdmin.php';
-
+ini_set("display_errors", 1);
 
 ?>
 
@@ -45,9 +45,11 @@ include 'khususAdmin.php';
 
     <?php
         if (isset($_POST['save'])){
+            // var_dump($_POST['save']);
+            // die();
             $foto = $_FILES['foto']['name'];
             $lokasi = $_FILES['foto']['tmp_name'];
-            move_uploaded_file($lokasi, "../assets/image".$foto);
+            move_uploaded_file($lokasi, "../assets/image/".$foto);
             $con->query("INSERT INTO products (product_code, name, origin, price, quantity, image) VALUES ('$_POST[product_code]', '$_POST[name]', '$_POST[origin]', '$_POST[price]', '$_POST[quantity]', '$foto')");
             echo "data tersimpan";
             echo "<meta http-equiv='refresh' content='1;url=listProduk.php?halaman=produk'>";

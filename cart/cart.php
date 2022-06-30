@@ -49,9 +49,8 @@ if (empty($_SESSION['cart']) OR !isset($_SESSION['cart'])){
     <section class="cart section-margin">
         <div class="container">
 
-            <h1>Keranjang Belanja</h1>
-            <hr>
-            <table class="table">
+            <h1 class="title">Keranjang Belanja</h1>
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>

@@ -17,12 +17,11 @@ session_start();
 </head>
 
 <body>
-<section class="cart section-margin">
-        <div class="container ">
+<section class="cart">
+        <div class="container">
 
-            <h1>Keranjang Belanja</h1>
-            <hr>
-            <table class="table">
+            <h1 class="title">Keranjang Belanja</h1>
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -58,16 +57,14 @@ session_start();
                 </tbody>
                     <?php       
                         $id_user = $_SESSION['users']['id'];
-                        $get = $con->query("SELECT * FROM orders WHERE id_user=$id_user ORDER BY id DESC");
+                        $get = $con->query("SELECT * FROM orders WHERE id_user=$id_user AND id='$_GET[id]'");
                         $pecah = $get->fetch_assoc();
                         $total_order = $pecah['total'];
                     ?>
                 <tfoot>
                     <tr>
                         <th>Ongkir</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="3"></th>
                         <?php
                             $get2 = $con->query("SELECT * FROM shipping_cost WHERE id='$pecah[id_ongkir]'");
                             $pecah2 = $get2->fetch_assoc();
@@ -75,9 +72,7 @@ session_start();
                         <th>Rp. <?=number_format($pecah2['fare'], 0, ',', '.') ;?></th>
                     </tr>
                         <th>Total Belanja</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="3"></th>
                         <th>Rp. <?=number_format($total_order, 0, ',', '.') ;?></th>
                     </tr>
                 </tfoot>
@@ -96,11 +91,12 @@ session_start();
                 <form method="post">
                     <button name="pay" class="btn-bayar next-btn flex">Bayar</button>
                 </form>
-        </div>
+            </div>
     </section>
     <?php
         if (isset($_POST["pay"])){
             unset($_SESSION['cart']);
+            $con->query("SELECT * FROM orders WHERE id_order=");
             echo "<script>alert('Pembelian Sukses');</script>";
             echo "<script>location='payment.php?id=$id_order';</script>";
         }

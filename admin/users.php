@@ -12,26 +12,19 @@ include 'khususAdmin.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include '../assets/link.php'; ?>
+    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="../assets/style.css">
     <title>List Users</title>
 </head>
 <body>
 <header>
-        <nav class="admin-menu">
-            <ul>
-                <li><a href="../index.php">Halaman Website</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="listProduk.php">List Product</a></li>
-                <li><a href="listOrder.php">List Order</a></li>
-                <li><a href="../login/logout.php">Logout</a></li>
-            </ul>
-        </nav>
+    <?php include 'navbar.php' ?>
     </header>
     <section class="cart">
         <div class="container">
-            <h1>List Users</h1>
-            <hr>
-            <table class="table">
+            <h1 class="title">List Users</h1>
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -57,8 +50,10 @@ include 'khususAdmin.php';
                         <td><?=$user['phone_number'];?></td>
                         <td><?=$user['address_line'];?></td>
                         <td>
-                            <button><a href="hapusUser.php?halaman=hapusid&id=<?=$user['id'];?>" class="next-btn" onclick="return confirm('Yakin Hapus?')">Hapus</a></button>
-                            <button><a href="ubahUser.php?halaman=ubahuser&id=<?=$user['id'];?>" class="next-btn">Ubah</a></button>
+                            <div class="padding-btn">
+                                <a href="hapusUser.php?halaman=hapusid&id=<?=$user['id'];?>" class="checkout-btn" onclick="return confirm('Yakin Hapus?')">Hapus</a>
+                                <a href="ubahUser.php?halaman=ubahuser&id=<?=$user['id'];?>" class="checkout-btn">Ubah</a>
+                            </div>
                         </td>
                     </tr>
                     <?php $no++ ?>
