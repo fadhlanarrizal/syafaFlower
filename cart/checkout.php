@@ -92,24 +92,22 @@ if (!isset($_SESSION["users"])){
                     <option value="<?= $ongkir['id']?>">
                         <?=$ongkir['city']?> -
                         Rp.<?=number_format($ongkir['fare'], 0, ',', '.')?>
+                    </option>
                     <?php endforeach ?>
                 </select>
                     <button name="order" class="checkout-btn">Check Out</button>
             </form>
-                    </option>
             <?php
                 if (isset($_POST["order"])){
                     $id_user = $_SESSION['users']['id'];
                     $id_ongkir = $_POST['id_ongkir'];
-                    // print_r($id_ongkir);
                     $date_of_order = date("Y-m-d");
 
                     $get = $con->query("SELECT * FROM shipping_cost WHERE id='$id_ongkir'");
-                    // $array = mysqli_fetch($con, $get);
                     $ongkirs = $get->fetch_assoc();
-                    // echo $ongkirs;
                     $tarif = $ongkirs['fare'];
                     $total_order = $total + $tarif;
+
                     // menyimpan data ke tabel pembelian
                     $con->query("INSERT INTO orders (id_user, id_ongkir, date_of_order, total)
                     VALUES ('$id_user', '$id_ongkir', '$date_of_order', '$total_order')");
@@ -119,16 +117,11 @@ if (!isset($_SESSION["users"])){
                     foreach ($_SESSION['cart'] as $id_product => $quantity) {
                         $con->query("INSERT INTO order_items (id_order, id_product, order_quantity) VALUES ('$id_order', '$id_product', '$quantity')");
                     }
-                    // echo "<script>alert('Pembelian Sukses');</script>";
                     echo "<script>location='shipment.php?id=$id_order';</script>";
                 }
             ?>
         </div>
     </section>
-
-    <pre>
-        <?php print_r($_SESSION);?>
-    </pre>
 </body>
 
 </html>

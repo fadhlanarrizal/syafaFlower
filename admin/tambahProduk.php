@@ -29,6 +29,10 @@ ini_set("display_errors", 1);
             <input type="number" class="form-control" name="price">
         </div>
         <div class="form">
+            <label>Harga Beli</label>
+            <input type="number" class="form-control" name="ori_price">
+        </div>
+        <div class="form">
             <label>Asal</label>
             <input type="text" class="form-control" name="origin">
         </div>
@@ -50,7 +54,7 @@ ini_set("display_errors", 1);
             $foto = $_FILES['foto']['name'];
             $lokasi = $_FILES['foto']['tmp_name'];
             move_uploaded_file($lokasi, "../assets/image/".$foto);
-            $con->query("INSERT INTO products (product_code, name, origin, price, quantity, image) VALUES ('$_POST[product_code]', '$_POST[name]', '$_POST[origin]', '$_POST[price]', '$_POST[quantity]', '$foto')");
+            $con->query("INSERT INTO products (product_code, name, origin, price, ori_price, quantity, image) VALUES ('$_POST[product_code]', '$_POST[name]', '$_POST[origin]', '$_POST[price]', '$_POST[ori_price]', '$_POST[quantity]', '$foto')");
             echo "data tersimpan";
             echo "<meta http-equiv='refresh' content='1;url=listProduk.php?halaman=produk'>";
         }

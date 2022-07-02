@@ -1,4 +1,5 @@
 <?php
+require '../koneksi.php';
 session_start();
 // mendapat code product dari URL
 if ($_SESSION["users"]["username"] == "admin"){
@@ -8,6 +9,14 @@ if ($_SESSION["users"]["username"] == "admin"){
 }
 $id_product = $_GET["id"];
 
+// jika produk kosong maka tidak bisa beli 
+$products = $con->query("SELECT * FROM products WHERE id='$id_product'");
+$product = $products->fetch_assoc();
+if ($product['quantity'] == 0){
+    echo "<script>alert('Maaf stok habis');</script>";
+    echo "<script>location='../index.php';</script>";
+    die();
+}
 // jika sudah ada produk di cart, maka produk itu jumlahnya di +1
 
 if (isset($_SESSION['cart'][$id_product])) {
