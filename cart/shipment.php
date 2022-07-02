@@ -94,11 +94,10 @@ session_start();
             </div>
     </section>
     <?php
+        $id_order = $_GET["id"];
         if (isset($_POST["pay"])){
             unset($_SESSION['cart']);
-            $con->query("SELECT * FROM orders WHERE id_order=");
-            echo "<script>alert('Pembelian Sukses');</script>";
-            echo "<script>location='payment.php?id=$id_order';</script>";
+            echo "<script>location='../payment/payment.php?id=$id_order';</script>";
         }
     ?>
 </body>

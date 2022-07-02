@@ -36,7 +36,12 @@ session_start();
                     <!-- menampilkan produk yang sedang diperlukan berdasarkan id_produk -->
                     <?php
                         $id_user = $_SESSION['users']['id'];
-                        $ambil = $con->query("SELECT * FROM orders WHERE id_user = '$id_user'");
+                        $ambil = $con->query("SELECT orders.id, orders.date_of_order, orders.total, orders.status, order_status.status as status_name FROM `orders` LEFT JOIN order_status ON orders.status = order_status.id
+                        WHERE id_user = '$id_user'");
+                        // echo "<pre>";
+                        // var_dump($pecah3 = $ambil->fetch_assoc());
+                        // echo "</pre>";
+                        // die;
 
                         while ($pecah3 = $ambil->fetch_assoc()) : 
                             
@@ -44,43 +49,36 @@ session_start();
                     <tr>
                         <td><?= $no;?></td>
                         <td><?=date($pecah3["date_of_order"]);?></td>
-                        <td><?php if ($pecah3['status'] == 1){
-                                echo "Not paid yet";
-                            } elseif($pecah3['status'] == 2){
-                                echo "Paid";
-                            } elseif($pecah3['status'] == 3){
-                                echo "Delivering";
-                            } elseif($pecah3['status'] == 4){
-                                echo "Received";
-                            };?></td>
+                        <td><?= $pecah3['status_name'] ?></td>
                         <td> Rp. <?=number_format($pecah3['total'], 0, ',', '.');?></td>
                         <td>
                             <div class="padding-btn">
+                                <form method="post">
                             <a href="nota.php?id=<?= $pecah3['id']?>" class="checkout-btn">Nota</a>
                             <?php if($pecah3['status'] == 1) : ?>
-                            <a href="../payment/payment.php" class="checkout-btn">Bayar</a>
+                            <a class="checkout-btn" href="../payment/payment.php?id=<?=$pecah3['id']?>">Bayar</a>
                             <?php endif; ?>
+                            </form>
                             </div>
                         </td>
                     </tr>
                     <?php $no++;?>
                     <?php endwhile;?>
-
                 </tbody>
                     <?php       
-                        $get = $con->query("SELECT * FROM orders WHERE id_user=$id_user ORDER BY id DESC");
-                        $pecah = $get->fetch_assoc();
-                        $total_order = $pecah['total'];
+                        // $get = $con->query("SELECT * FROM orders WHERE id_user=$id_user ORDER BY id DESC");
+                        // $pecah = $get->fetch_assoc();
+                        // $total_order = $pecah['total'];
                     ?>
             </table>
     </section>
     <?php
-        if (isset($_POST["pay"])){
-            unset($_SESSION['cart']);
-            $con->query("SELECT * FROM orders WHERE id_order=");
-            echo "<script>alert('Pembelian Sukses');</script>";
-            echo "<script>location='payment.php?id=$id_order';</script>";
-        }
+        // if (isset($_POST["pay"])){
+        //     unset($_SESSION['cart']);
+        //     $con->query("SELECT * FROM orders WHERE id_order=");
+        //     echo "<script>alert('Pembelian Sukses');</script>";
+        //     echo "<script>location='payment.php?id=$id_order';</script>";
+        // }
     ?>
     <!-- <pre>
         <?//php print_r($_SESSION);?>
