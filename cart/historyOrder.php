@@ -65,11 +65,6 @@ session_start();
                     <?php $no++;?>
                     <?php endwhile;?>
                 </tbody>
-                    <?php       
-                        // $get = $con->query("SELECT * FROM orders WHERE id_user=$id_user ORDER BY id DESC");
-                        // $pecah = $get->fetch_assoc();
-                        // $total_order = $pecah['total'];
-                    ?>
             </table>
     </section>
     <?php
